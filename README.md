@@ -41,6 +41,14 @@ var router = new Router({
 - Writing map **with** argument **NO** slash `'/'` at end
 - There is no **404** page
 
+## Alternative CDN
+
+Using [raw.githack.com](https://raw.githack.com/)
+
+- [Router.min.js](https://rawcdn.githack.com/jlongyam/router/689a55d62e70bb27e38eb10c8f96dcad5e132bb8/dist/Router.min.js)
+- [Router.m.min.js](https://rawcdn.githack.com/jlongyam/router/689a55d62e70bb27e38eb10c8f96dcad5e132bb8/dist/Router.m.min.js)
+- [Router.fallback.min.js](https://rawcdn.githack.com/jlongyam/router/689a55d62e70bb27e38eb10c8f96dcad5e132bb8/dist/Router.fallback.min.js)
+
 ## Contribute
 
 - fork
