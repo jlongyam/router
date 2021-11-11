@@ -1,21 +1,223 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="content-type" content="text/html" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
   <title>Router</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+  </style>
+  <style type="text/css">
+  *,::before,::after{background-repeat:no-repeat;box-sizing:border-box}::before,::after{text-decoration:inherit;vertical-align:inherit}html{cursor:default;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Oxygen,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";line-height:1.15;-moz-tab-size:4;tab-size:4;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-break:break-word}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{height:0;overflow:visible}main{display:block}nav ol,nav ul{list-style:none}pre{font-family:Menlo,Consolas,Roboto Mono,Ubuntu Monospace,Oxygen Mono,Liberation Mono,monospace;font-size:1em}a{background-color:transparent}abbr[title]{text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:Menlo,Consolas,Roboto Mono,Ubuntu Monospace,Oxygen Mono,Liberation Mono,monospace;font-size:1em}small{font-size:80%}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}audio,canvas,iframe,img,svg,video{vertical-align:middle}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg{fill:currentColor}svg:not(:root){overflow:hidden}table{border-collapse:collapse}button,input,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}button,input,select{margin:0}button{overflow:visible;text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}fieldset{padding:.35em .75em .625em}input{overflow:visible}legend{color:inherit;display:table;max-width:100%;white-space:normal}progress{display:inline-block;vertical-align:baseline}select{text-transform:none}textarea{margin:0;overflow:auto;resize:vertical}[type="checkbox"],[type="radio"]{padding:0}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted ButtonText}details{display:block}dialog{background-color:white;border:solid;color:black;display:block;height:-moz-fit-content;height:-webkit-fit-content;height:fit-content;left:0;margin:auto;padding:1em;position:absolute;right:0;width:-moz-fit-content;width:-webkit-fit-content;width:fit-content}dialog:not([open]){display:none}summary{display:list-item}canvas{display:inline-block}template{display:none}a,area,button,input,label,select,summary,textarea,[tabindex]{-ms-touch-action:manipulation;touch-action:manipulation}[hidden]{display:none}[aria-busy="true"]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled],[disabled]{cursor:disabled}[aria-hidden="false"][hidden]:not(:focus){clip:rect(0,0,0,0);display:inherit;position:absolute}
+  html, body {
+      width: 100%;
+      height: 100%; }
+    body {
+      padding: 5%; }
+    pre {
+      padding: 10px; }
+    col {
+      width: unset !important; }
+    table {
+      overflow-x: auto;
+      display: block; }
+    thead, tbody, tfoot {
+      white-space: nowrap; }
+    td, th {
+      border: 1px solid silver;
+      padding: 10px; }
+    th {
+      text-align: left; }
+    a{
+      text-decoration:none;
+      color:#0064c1; }    
+      a:visited{
+        color:#80b2e0; }
+      a:hover, a:active{
+        outline-width:0; }
+      a:hover{
+        box-shadow:inset 0px -1px #3000c1;
+        color:#3000c1;
+        transition:color 0s, box-shadow 0s; }
+    footer {
+      margin-top: 20px;
+      margin-bottom: 200px; }
+    .markup, .jsx { color: #cccccc; background-color: #303030; }
+    html { word-break: normal; }
+    code:not(pre code) { color: #ff9800; background-color: inherit;}
+    pre, pre code { color: #cccccc; background-color: #303030; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Router</h1>
-  </header>
-  <main>
-    <h2>Test</h2>
-    <ul>
-      <li><a href="./polyfill/hashchange.test.html">hashchange</a></li>
-      <li><a href="./src/router.test.html">router</a></li>
-    </ul>
-  </main>
+<script>
+const toggle_hidden = (ele) => (ele.hidden = !ele.hidden);
+document.addEventListener('DOMContentLoaded', ( event ) => {
+  var a = document.links, i = 0
+  for( i; i< a.length;i++) {
+    contain_hash = ( a[i].href.indexOf( '#' ) != -1 )
+    if( contain_hash ) {
+      s_link = a[i].href
+      s_link_before = s_link.substring( 0, s_link.indexOf('#') )
+      i_pos = s_link.indexOf( '#' ) + 1
+      s_link_after = s_link.substring( i_pos );
+      s_link_new = "o_" + s_link_after
+      a[i].href = s_link_before+'#'+s_link_new
+    }
+  }
+  function create_nav() {
+    var fargment = document.createDocumentFragment()
+    var nav = document.createElement('nav')
+    var el = document.querySelectorAll('[id*="o_"]')
+    var s_html = '<ul>'
+    for( var i = 0; i< el.length; i++) {
+      // console.log(el[i].tagName)
+      var s_content = '<a href="#' + el[i].id + '">'+el[i].textContent+'</a>'
+      if( el[i].tagName == 'H1') {
+        s_html += '<li>' + s_content + '</li>'
+      }
+      if( el[i].tagName == 'H2' ) {
+        s_html += "<ul>"
+        s_content = '<li>' + s_content + '</li>'
+        s_html += s_content
+        s_html += "</ul>"
+      }
+      if( el[i].tagName == 'H3' ) {
+        s_html += "<ul>"
+        s_content = '<li><ul><li>' + s_content + '</li></ul></li>'
+        s_html += s_content
+        s_html += "</ul>"
+      }
+    }
+    s_html += '</ul>'
+    nav.innerHTML = s_html
+    nav.setAttribute('hidden','')
+    fargment.appendChild( nav )
+    var button_nav = document.createElement('button')
+    button_nav.textContent = '☰'
+    fargment.appendChild( button_nav )
+    document.body.appendChild(fargment)
+    nav.id = '_nav'
+    button_nav.id = '_nav_button'
+    var styleString = `
+      #_nav {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 300px;
+        background-color: white;
+        overflow: auto;
+        padding: 30px 10px;
+        border-left: 1px solid gray;
+        white-space: nowrap;
+      }
+      #_nav ul {
+        margin: 0;
+        padding: 0;
+        }
+      #_nav ul li {
+        margin: 0;
+        padding-left: 20px;
+        }
+      #_nav_button {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        border: 2px solid gray;
+        padding: 10px;
+        background-color: silver;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 90;
+      }
+    `
+    var style = document.createElement( 'style')
+    document.head.appendChild(style)
+    style.textContent = styleString;
+
+    button_nav.addEventListener('click', ()=> {
+      toggle_hidden( nav )
+    })
+    nav.addEventListener('click',()=> {
+      toggle_hidden( nav )
+    })
+  }
+  create_nav()
+})
+</script>
+<h1 id="o_router">Router</h1>
+<p><a href="https://github.com/jlongyam/router">github.com/jlongyam/router</a></p>
+<h2 id="o_what-is-this">What is this ?</h2>
+<p>Simple hash based <strong>router</strong> via <code>location.hash</code> change,</p>
+<p>no <code>History.pushState()</code></p>
+<h2 id="o_usage">Usage</h2>
+<h3 id="o_html">HTML</h3>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;./Router.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;ul&gt;</span>
+  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;#/&quot;</span><span class="kw">&gt;</span>Root<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;#/Home&quot;</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span>
+<span class="kw">&lt;ul&gt;</span>
+  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;./simple.html&quot;</span><span class="kw">&gt;</span>Reset<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span>
+<span class="kw">&lt;pre</span><span class="ot"> id=</span><span class="st">&quot;output&quot;</span><span class="kw">&gt;&lt;/pre&gt;</span></code></pre></div>
+<h3 id="o_javascript">Javascript</h3>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> router <span class="op">=</span> <span class="kw">new</span> <span class="at">Router</span>(<span class="op">{</span>
+  <span class="st">&#39;#/&#39;</span><span class="op">:</span> ()<span class="op">=&gt;</span> <span class="va">output</span>.<span class="at">textContent</span> <span class="op">=</span> <span class="st">&#39;Index&#39;</span><span class="op">,</span>
+  <span class="st">&#39;#/Home/&#39;</span><span class="op">:</span> ()<span class="op">=&gt;</span> <span class="va">output</span>.<span class="at">textContent</span> <span class="op">=</span> <span class="st">&#39;Welcome&#39;</span>
+<span class="op">}</span>)</code></pre></div>
+<p><a href="./test/Router.html">Demo</a></p>
+<h2 id="o_note">Note</h2>
+<ul>
+<li>Writing map <strong>without</strong> argument MUST ending with <code>'/'</code> slash</li>
+<li>Writing map <strong>with</strong> argument <strong>NO</strong> slash <code>'/'</code> at end</li>
+<li>There is no <strong>404</strong> page</li>
+</ul>
+<h2 id="o_contribute">Contribute</h2>
+<ul>
+<li>fork</li>
+<li>pull</li>
+<li>issue any bug</li>
+<li>fix</li>
+</ul>
+<p>License <strong>MIT</strong></p>
+<footer>&nbsp;</footer>
 </body>
 </html>
