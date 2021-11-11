@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="content-type" content="text/html" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Test</title>
+  <script src="../src/Router.js"></script>
+  <script src="./checkjs.min.js"></script>
+  <style>ul { list-style: none; }</style>
+</head>
+<body>
+  <h2>Test</h2>
+  <script>
+    window.addEventListener('load', ()=> {
+      checkJS.test( "var router = new Router()", ()=> {
+        var router = new Router()
+        checkJS.assert( typeof router.map === 'object', "typeof router.map === 'object'" )
+        checkJS.assert( Object.keys( router.map ).length === 0, "Object.keys( router.map ).length === 0" )
+        checkJS.assert( router._is_support, "router._is_support" )
+        checkJS.assert( typeof router._hash === 'string', "typeof router._hash === 'string'" )
+        checkJS.assert( router._is_hash === false, "router._is_hash === false" )
+        location.href = '#/'
+        checkJS.assert( router._is_hash === true, "router._is_hash === true" )
+        
+      })
+      checkJS.test( "UNTITLE", ()=> {
+        // var router = new Router()
+        
+           
+      })
+    })
+  </script>
+</body>
+</html>

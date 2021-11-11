@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="content-type" content="text/html" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Test</title>
+  <script src="./Router.js"></script>
+  <style>
+    pre {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 5px;
+      border: 2px solid silver;
+      margin-bottom: 5px;
+    }
+    #pre_result {
+      padding: 10px;
+      background-color: #ffeb3b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Test</h2>
+    <p><strong>Note:</strong></p>
+    <ul>
+      <li>writing map <b>without</b> argument MUST ending with '/' slash</li>
+      <li>writing map <b>with</b> argument NO slash '/' at end</li>
+    </ul>
+  </header>
+  <main>
+    <section>
+      <h3>links</h3>
+      <ul>
+        <li><a href="./Router.test.html">reset</a></li>
+        <li><a href="#/">#/</a></li>
+        <li><a href="#/Unregister">#/Unregister</a></li>
+        <li><a href="#/Home">#/Home</a></li>
+        <li><a href="#/Home/Page">#/Home/Page</a></li>
+        <li><a href="#/Config/ONE/TWO/THREE">#/Config/ONE/TWO/THREE</a></li>
+        <li><a href="#/Config">#/Config/</a></li>
+        <li><a href="#/Other/deep/A/B">#/Other/deep/A/B</a></li>
+        <li><a href="#/Other/deep">#/Other/deep</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3>result</h3>
+      <pre id="pre_result"></pre>
+    </section>
+    <section>
+      <h3>hash</h3>
+      <pre id="pre_hash"></pre>
+    </section>
+    <section>
+      <h3>map</h3>
+      <pre id="pre_map"></pre>
+    </section>
+  </main>
+  <script>
+    var pre_result = document.getElementById( 'pre_result' )
+    var pre_hash = document.getElementById( 'pre_hash' )
+    var pre_map = document.getElementById( 'pre_map' )
+    var router = new Router({
+      '#/': function() {
+        pre_result.textContent = 'Index'
+      },
+      '#/:arg': function( arg ) {
+        pre_result.textContent = 'Index with arg: ' + arg
+      },
+      '#/Home/': function() {
+        pre_result.textContent = 'Home index'
+      },
+      '#/Home/:any': function( any ) {
+        pre_result.textContent = 'Home with arg: ' + any
+      },
+      '#/Config/:a/:b/:c': function( a, b, c ) {
+        pre_result.textContent = 'Config with args: ' + a + ', ' + b + ', ' + c
+      },
+      '#/Config/': function() {
+        pre_result.textContent = 'Config Index'
+      },
+      '#/Other/deep/': function() {
+        pre_result.textContent = 'Other/deep Index'
+      },
+      '#/Other/deep/:a/:b': function( a, b ) {
+        pre_result.textContent = 'Other/deep with args: ' + a + ', ' + b
+      },
+    })
+    pre_map.textContent = JSON.stringify( router._map,0,2 )
+    if( "onhashchange" in window ) {
+      window.addEventListener( 'hashchange', function() {
+        pre_hash.textContent = JSON.stringify( router._hash,0,2 )
+      })
+    }
+    
+  </script>
+</body>
+</html>
