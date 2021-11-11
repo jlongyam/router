@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html" />
   <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>Test</title>
-  <script src="../src/Router.js"></script>
+  <script src="../src/Router.fallback.js"></script>
   <style>
     pre {
       box-sizing: border-box;
@@ -27,7 +27,7 @@
     <section>
       <h3>links</h3>
       <ul>
-        <li><a href="./Router.html">reset</a></li>
+        <li><a href="./Router.fallback.html">reset</a></li>
         <li><a href="#/">#/</a></li>
         <li><a href="#/whatever">#/whatever</a></li>
         <li><a href="#/Home">#/Home</a></li>
@@ -43,18 +43,6 @@
       <h3>result</h3>
       <pre id="pre_result"></pre>
     </section>
-    <!-- === debug:START === -->
-    <!--
-    <section>
-      <h3>hash</h3>
-      <pre id="pre_hash"></pre>
-    </section>
-    <section>
-      <h3>map</h3>
-      <pre id="pre_map"></pre>
-    </section>
-    -->
-    <!-- === debug:END === -->
   </main>
   <footer>
     <p><a href="./index.html">Back</a></p>
@@ -88,18 +76,6 @@
         pre_result.textContent = 'Other/deep with args: ' + a + ', ' + b
       }
     })
-    // debug
-    // =====
-    // var pre_hash = document.getElementById( 'pre_hash' )
-    // var pre_map = document.getElementById( 'pre_map' )
-    // pre_map.textContent = JSON.stringify( router._map,0,2 )
-    // if( "onhashchange" in window ) {
-    //   window.addEventListener( 'hashchange', function() {
-    //     return router._hash
-    //     pre_hash.textContent = JSON.stringify( router._hash,0,2 )
-    //   })
-    // }
-    
   </script>
 </body>
 </html>

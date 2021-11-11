@@ -33,7 +33,7 @@ var router = new Router({
 })
 ```
 
-[Demo](./test/Router.html)
+[Demo](https://jlongyam.github.io/router/test/index.html)
 
 ## Note
 
