@@ -54,4 +54,4 @@ var router = new Router({
 - issue any bug
 - fix
 
-License **MIT**
+License **HELL**
