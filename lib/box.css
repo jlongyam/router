@@ -1,0 +1,8 @@
+:root {
+  --box_padding: 2.5%;
+  --box_border: 1px solid silver;
+}
+.box {
+  padding: var(--box_padding);
+  border: var(--box_border);
+}
