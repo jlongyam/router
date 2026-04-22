@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>vanilla</title>
+ </head>
+<body>
+<ul id=ul></ul>
+<p id=p></p>
+<pre id=log></pre>
+<script>
+  let links = [
+    location.pathname.split('/').pop(),
+    '#/home/path/search?foo=/bar',
+    '#/any/world'
+  ]
+  links.forEach( link=> {
+    ul.innerHTML += `<li><a href="${link}">${link}</a></li>`
+  })
+  window.addEventListener('hashchange', ()=> {
+    let watch_hash = location.hash.substring(2)
+    let a_hash = watch_hash.split('?')
+    let url_part = {}
+    url_part.hash = ( a_hash[0][a_hash[0].length-1] === '/' ) ? a_hash[0].substring(0, a_hash[0].length-1) : a_hash[0]
+    url_part.search = (a_hash[1] === undefined) ? false : a_hash[1]
+    let a_url = url_part.hash.split('/')
+    switch(a_url[0]) {
+      case 'home': {
+        p.innerHTML = 'Welcome Home, ' + a_url[2] + ': ' + url_part.search
+      }; break
+      default: {
+        p.innerHTML = '404'
+      }; break
+    }
+    log.textContent = a_url.join('/') + '\n' + url_part.search;
+  })
+</script>
+</body>
+</html>

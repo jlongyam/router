@@ -1,0 +1,21 @@
+#test_runner_container {
+  padding: 8px;
+  background-color: #0f0f0f;
+  color: silver;
+}
+
+.tester-runner {
+  font: normal 16px/1.5 ui-monospace, monospace;
+  padding: 16px;
+  white-space: pre;
+}
+
+.tester-runner__group,
+.tester-runner__group--head,
+.tester-runner__info--head {
+  margin-bottom: 1em;
+}
+
+.tester-runner__group--test__sub {
+  margin-left: 1em;
+}

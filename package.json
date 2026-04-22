@@ -1,0 +1,29 @@
+{
+  "name": "@jlongyam/router",
+  "version": "1.0.0",
+  "description": "router",
+  "keywords": [
+    "router",
+    "hash-router"
+  ],
+  "homepage": "https://github.com/jlongyam/router",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlongyam/router.git"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/match.test.js",
+    "server": "serve"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
