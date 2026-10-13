@@ -19,6 +19,7 @@
     "usage": "node usage/design.mjs"
   },
   "devDependencies": {
+    "happy-dom": "^21.0.1",
     "poku": "^4.5.0"
   }
 }

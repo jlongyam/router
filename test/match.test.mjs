@@ -34,4 +34,41 @@ describe('match( hash, route ) -> { path, params, query }', async ()=> {
     assert.deepEqual( match( args.hash, args.route ), returns );
   });
 
+  // Regression: '/' used to collapse to an empty path (1 part), so the root
+  // route could never match and a ':page' pattern captured params.page === ''.
+  args = {
+    hash: '#/',
+    route: '/'
+  };
+  it( `${args.hash} > ${args.route} (root)`, ()=> {
+    returns = { path: '/', params: {}, query: {} };
+    assert.deepEqual( match( args.hash, args.route ), returns );
+  });
+
+  args = {
+    hash: '',
+    route: '/'
+  };
+  it( `${JSON.stringify(args.hash)} > ${args.route} (empty hash)`, ()=> {
+    returns = { path: '/', params: {}, query: {} };
+    assert.deepEqual( match( args.hash, args.route ), returns );
+  });
+
+  args = {
+    hash: '#/',
+    route: ':page'
+  };
+  it( `${args.hash} > ${args.route} (wildcard no longer swallows root)`, ()=> {
+    assert.deepEqual( match( args.hash, args.route ), null );
+  });
+
+  args = {
+    hash: '#/home/',
+    route: '/home'
+  };
+  it( `${args.hash} > ${args.route} (trailing slash still trimmed)`, ()=> {
+    returns = { path: '/home', params: {}, query: {} };
+    assert.deepEqual( match( args.hash, args.route ), returns );
+  });
+
 })
