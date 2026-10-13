@@ -1,4 +1,5 @@
 import { router } from '../src/router.mjs';
+// import { router } from 'https://esm.sh/@jlbyte/router@latest';
 
 const pre = document.querySelector('#pre');
 let login = false;
