@@ -1,16 +1,16 @@
 function match(routePattern, hash) {
-  // Remove '#'
+  
   let hashStr = hash.replace(/^#/, '');
 
-  // Split at '?' - path is before '?'
+  
   const queryIndex = hashStr.indexOf('?');
   let path = queryIndex !== -1 ? hashStr.substring(0, queryIndex) : hashStr;
   const queryString = queryIndex !== -1 ? hashStr.substring(queryIndex + 1) : '';
 
-  // Remove trailing slash
+  
   path = path.replace(/\/$/, '');
 
-  // Parse query
+  
   const query = {};
   if (queryString) {
     queryString.split('&').forEach(param => {
@@ -19,7 +19,7 @@ function match(routePattern, hash) {
     });
   }
 
-  // Match pattern
+  
   const patternParts = routePattern.split('/');
   const pathParts = path.split('/');
 
