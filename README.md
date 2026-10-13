@@ -126,8 +126,9 @@ See usage detail in **usage/route.mjs**
 
 </details>
 
-## CDN
+## Links
 
-`esm.sh/@jlbyte/router@last`
-
-License [MIT](LICENSE)
+[CDN](esm.sh/@jlbyte/router@last) .
+[Website](https://jlongyam.github.io/router/) .
+[Repository](https://github.com/jlongyam/router) .
+[MIT](https://github.com/jlongyam/router/?tab=MIT-1-ov-file#)
