@@ -21,6 +21,8 @@ That slash after querty parsed properly.
 - `match` -> work in node
 - `Router` -> work in browser
 
+[Demo](https://jlongyam.github.io/router/usage/)
+
 ## Usage
 
 <details name="usage">
@@ -128,7 +130,7 @@ See usage detail in **usage/route.mjs**
 
 ## Links
 
-[CDN](esm.sh/@jlbyte/router@last) .
+[CDN](https://esm.sh/@jlbyte/router@last) .
 [Website](https://jlongyam.github.io/router/) .
 [Repository](https://github.com/jlongyam/router) .
 [MIT](https://github.com/jlongyam/router/?tab=MIT-1-ov-file#)
