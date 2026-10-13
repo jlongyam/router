@@ -1,4 +1,5 @@
 # Runs the tests, then publishes the package to npm when a GitHub release is published.
+#
 # Docs: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 #
 # Requirements before this can succeed:
@@ -15,7 +16,6 @@ name: Node.js Package
 on:
   release:
     types: [published]
-  # Manual trigger, so the workflow can be tested without cutting a new release.
   workflow_dispatch:
 
 permissions:
@@ -43,7 +43,6 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
-    # Required: without this, the environment secret NPM_TOKEN is not exposed to the job.
     environment: npm_token
     steps:
       - uses: actions/checkout@v4
@@ -56,12 +55,6 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org/
       - run: pnpm install --frozen-lockfile
-      # --access public is required: scoped packages (@jlbyte/...) default to
-      # "restricted", which fails for accounts without a paid private-packages plan.
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-# Note: a release-triggered run uses the workflow file from the released ref, so a
-# tag created before this file existed will never produce a run. Publish a release
-# whose tag is cut from a commit that already contains this file.
