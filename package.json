@@ -15,14 +15,10 @@
   "author": "jlongyam",
   "main": "src/router.mjs",
   "scripts": {
-    "test": "node test/match.test.js",
-    "server": "serve"
+    "test": "poku test/",
+    "usage": "node usage/design.mjs"
   },
   "devDependencies": {
-    "serve": "^14.2.6"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "poku": "^4.5.0"
   }
 }

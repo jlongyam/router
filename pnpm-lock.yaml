@@ -1,0 +1,24 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      poku:
+        specifier: ^4.5.0
+        version: 4.5.0
+
+packages:
+
+  poku@4.5.0:
+    resolution: {integrity: sha512-QhlSibx5/N81TQbm25ykeqnYcZ4kNGJtMoNbtrfXzUwbg2El6/GhMc4Wmdwsa19G/s/hStJSSVLBJF0B8zsXFg==}
+    engines: {node: '>=16.x.x'}
+    hasBin: true
+
+snapshots:
+
+  poku@4.5.0: {}
