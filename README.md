@@ -57,7 +57,7 @@ console.dir( match('#page/test?asset=path/to/file.js', 'page/:any') );
 }
 ```
 
-See usage detail in folder **usage/match.mjs**
+See usage detail in **usage/design.mjs**
 
 </details>
 <details name="usage">
@@ -82,7 +82,52 @@ console.assert( match( pattern, hash ), result )
 ```
 
 </details>
+<details name="usage">
+
+<summary>Create route</summary>
+
+Design:
+
+```js
+console.dir( match('#style/load?file=style.css', 'style/:action') )
+```
+
+Result:
+
+```js
+{
+  path: 'style/load',
+  params: { action: 'load' },
+  query: { file: 'style.css' }
+}
+```
+
+Implementation:
+
+```js 
+router.route('style/:action', ({ params, query })=> {
+  if(params.action === 'load') {
+    console.log( query.file )
+  }
+})
+```
+
+</details>
+<details name="usage">
+<summary>Manage Navigation</summary>
+
+Example:
+
+```js
+router.navigate('#style/load?file=style.css')
+```
+
+See usage detail in **usage/route.mjs**
+
+</details>
 
 ## CDN
 
-- 
+`esm.sh/@jlbyte/router@last`
+
+License [MIT](LICENSE)

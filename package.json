@@ -16,10 +16,11 @@
   "main": "src/router.mjs",
   "scripts": {
     "test": "poku test/",
-    "usage": "node usage/design.mjs"
+    "start": "serve ."
   },
   "devDependencies": {
     "happy-dom": "^21.0.1",
-    "poku": "^4.5.0"
+    "poku": "^4.5.0",
+    "serve": "^14.2.6"
   }
 }
