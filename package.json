@@ -1,7 +1,7 @@
 {
   "name": "@jlbyte/router",
   "version": "1.1.1",
-  "description": "router",
+  "description": "A hash based router",
   "keywords": [
     "router",
     "hash"
