@@ -130,7 +130,7 @@ See usage detail in **usage/route.mjs**
 
 ## Links
 
-[CDN](https://esm.sh/@jlbyte/router@last) .
+[CDN](https://esm.sh/@jlbyte/router@latest) .
 [Website](https://jlongyam.github.io/router/) .
 [Repository](https://github.com/jlongyam/router) .
 [MIT](https://github.com/jlongyam/router/?tab=MIT-1-ov-file#)
