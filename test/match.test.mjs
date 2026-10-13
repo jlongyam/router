@@ -34,8 +34,6 @@ describe('match( hash, route ) -> { path, params, query }', async ()=> {
     assert.deepEqual( match( args.hash, args.route ), returns );
   });
 
-  // Regression: '/' used to collapse to an empty path (1 part), so the root
-  // route could never match and a ':page' pattern captured params.page === ''.
   args = {
     hash: '#/',
     route: '/'
