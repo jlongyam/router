@@ -39,13 +39,15 @@
     "prepublishOnly": "node scripts/build.mjs",
     "test": "node scripts/build.mjs && uvu test",
     "typecheck": "tsc",
-    "start": "serve ."
+    "start": "serve .",
+    "usage:nw": "nw usage/nw"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "@rollup/plugin-babel": "^7.1.0",
     "happy-dom": "^21.0.1",
+    "nw": "0.78.0-sdk",
     "rollup": "^4.64.9",
     "serve": "^14.2.6",
     "typescript": "^7.0.2",

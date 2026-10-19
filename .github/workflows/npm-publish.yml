@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm typecheck
       - run: pnpm test
 
@@ -55,7 +55,7 @@ jobs:
           node-version: 20
           cache: pnpm
           registry-url: https://registry.npmjs.org/
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
       - run: npm publish --access public
         env:

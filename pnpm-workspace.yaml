@@ -1,0 +1,6 @@
+allowBuilds:
+  nw: true
+# NW.js is only needed for manual desktop experiments; everything else in this
+# repo is plain JS. Only this dependency is allowed to run an install script
+# (it downloads the SDK binary). CI installs with --ignore-scripts, so the
+# ~150 MB download never happens there.

@@ -189,3 +189,13 @@ pnpm typecheck
 pnpm build         # dist/router.js + dist/router.legacy.js
 ```
 
+NW.js is a devDependency for manual desktop checks (`pnpm usage:nw`). Its
+postinstall downloads the SDK, so approve it once locally:
+
+```bash
+pnpm approve-builds   # one-off, then:
+pnpm usage:nw
+```
+
+CI installs with `--ignore-scripts`, so that download never runs on GitHub.
+
