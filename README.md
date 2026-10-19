@@ -5,9 +5,7 @@ A hash based Router
 [![npm version](https://img.shields.io/npm/v/@jlbyte/router?logo=npm&label=npm)](https://www.npmjs.com/package/@jlbyte/router)
 [![CI](https://github.com/jlongyam/router/actions/workflows/ci.yml/badge.svg)](https://github.com/jlongyam/router/actions/workflows/ci.yml)
 [![npmx](https://img.shields.io/badge/npmx-view-blue)](https://npmx.dev/package/@jlbyte/router)
-[![DeepSeek Harness](https://img.shields.io/badge/built%20with-DeepSeek%20Harness-4D6BFE)](https://www.deepseek.com/harness/)
-[![BrowserStack](https://img.shields.io/badge/tested%20with-BrowserStack-orange?logo=browserstack&logoColor=white)](https://www.browserstack.com/open-source)
-[![Socket Badge](https://badge.socket.dev/npm/package/@jlbyte/router/2.1.0)](https://socket.dev/npm/package/@jlbyte/router)
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/router/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/router)
 
 ## But why?
 
