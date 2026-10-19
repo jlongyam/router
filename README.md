@@ -196,6 +196,7 @@ pnpm install
 pnpm test          # builds dist/, then runs the uvu suite
 pnpm typecheck
 pnpm build         # dist/router.js + dist/router.legacy.js
+pnpm test:webkit   # headless WebKit (Safari's engine) end-to-end check
 ```
 
 To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`.

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebKit fixture</title>
+</head>
+<body>
+<script type="module">
+  // Loaded straight from src/ over HTTP, so this exercises the real ESM entry
+  // point (default export + router.match) in Safari's engine.
+  import router from '/src/router.mjs';
+
+  window.__router = router;
+  window.__match = router.match('#page/test?asset=a.js', 'page/:any');
+
+  router.route(':page', ({ params }) => {
+    document.body.dataset.page = params.page;
+  });
+
+  router.route('lib/:n/src', ({ params }) => {
+    document.body.dataset.lib = params.n;
+  });
+
+  window.__ready = true;
+</script>
+</body>
+</html>

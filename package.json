@@ -39,6 +39,7 @@
     "prepublishOnly": "node scripts/build.mjs",
     "test": "node scripts/build.mjs && uvu test",
     "typecheck": "tsc",
+    "test:webkit": "node scripts/test-webkit.mjs",
     "start": "serve .",
     "usage:nw": "nw usage/nw"
   },
@@ -48,6 +49,7 @@
     "@rollup/plugin-babel": "^7.1.0",
     "happy-dom": "^21.0.1",
     "nw": "0.78.0-sdk",
+    "playwright": "1.64.1",
     "rollup": "^4.64.9",
     "serve": "^14.2.6",
     "typescript": "^7.0.2",
