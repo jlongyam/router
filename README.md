@@ -2,6 +2,11 @@
 
 A hash based Router
 
+[![npm version](https://img.shields.io/npm/v/@jlbyte/router?logo=npm&label=npm)](https://www.npmjs.com/package/@jlbyte/router)
+[![CI](https://github.com/jlongyam/router/actions/workflows/ci.yml/badge.svg)](https://github.com/jlongyam/router/actions/workflows/ci.yml)
+[![npmx](https://img.shields.io/badge/npmx-view-blue)](https://npmx.dev/package/@jlbyte/router)
+[![Socket Badge](https://badge.socket.dev/npm/package/@jlbyte/router/2.0.0)](https://badge.socket.dev/npm/package/@jlbyte/router/2.0.0)
+
 ## But why?
 
 The the difference of this router with other hash router
@@ -210,4 +215,8 @@ pnpm usage:nw
 ```
 
 CI installs with `--ignore-scripts`, so that download never runs on GitHub.
+
+## Credits
+
+Built with [DeepSeek](https://www.deepseek.com).
 
