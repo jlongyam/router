@@ -133,7 +133,9 @@ See usage detail in **usage/route.mjs**
 
 </details>
 
-## TypeScript
+## Module format
+
+### TypeScript
 
 Type definitions are bundled, so editors and `tsc` pick them up without
 installing anything extra:
@@ -145,13 +147,13 @@ import type { MatchResult, RouteMatch } from '@jlbyte/router'
 const parsed: MatchResult | null = router.match('#page/test', 'page/:any')
 ```
 
-## Module format
+### Javascript
 
 Two entry points:
 
-- `import` -> `src/router.mjs`, native ESM shipped as source (no build). Its
+- `import` -> `src/router.mjs`, native **ESM** shipped as source (no build). Its
   single default export is the ready-made `router`.
-- classic `<script>` -> `dist/router.js`, an IIFE that registers `window.router`
+- `<script>` -> `dist/router.js`, an **IIFE** that registers `window.router`
   automatically (the `Router` class is not exposed globally).
 
 ```html
@@ -164,13 +166,20 @@ Two entry points:
 
 No wiring is needed with the script tag: `router` is already global.
 
-### Legacy build
+### Legacy
 
 `dist/router.legacy.js` is the same router transpiled to ES5, for engines that
-predate ES2015 (for example the QtWebKit-based Otter Browser). It is
-**standalone**: the few runtime APIs it needs — `Map`, `Symbol.iterator`,
-`Object.entries`, `Array.from` and `String.prototype.startsWith` — are shipped as
-small guarded shims inside the file, so no polyfill file has to be loaded first.
+predate ES2015.
+
+It is **standalone**, the few runtime APIs it needs
+- `Map`,
+- `Symbol.iterator`,
+- `Object.entries`,
+- `Array.from` and
+- `String.prototype.startsWith`
+
+are shipped as small guarded shims inside the file,
+so **no polyfill file has to be loaded first**.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@jlbyte/router/dist/router.legacy.js"></script>
@@ -189,48 +198,45 @@ targeting those browsers.
 
 ## Development
 
-Node **20 is the minimum** (`engines.node: ">=20"`). Development runs on Node 26
-(`.nvmrc`), and CI checks both: 20 for the floor, 26 for the current runtime.
-
-Node 20 matters for *distribution*, not for the library code:
-
-- it is the last line that still ships 32-bit `linux-armv7l` builds;
-- it is the last line with `--experimental-network-imports`, so it is also the
-  version to use if you want to import a CDN build directly from Node;
-- single executable applications (SEA) work on both, with different flags:
-  `--experimental-sea-config` (plus postject) on 20, and the native `--build-sea`
-  as well on 26.
+- Node **20 is the minimum** (`engines.node: ">=20"`).
+- Development runs on Node 26 (`.nvmrc`),
+- CI checks both: 20 for the floor, 26 for the current runtime.
 
 ```bash
-nvm use            # reads .nvmrc (Node 26)
+nvm use 
 pnpm install
-pnpm test          # builds dist/, then runs the uvu suite
+pnpm test
 pnpm typecheck
-pnpm build         # dist/router.js + dist/router.legacy.js
-pnpm test:webkit   # headless WebKit (Safari's engine) end-to-end check
+pnpm build
+pnpm test:webkit
 ```
 
-To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`.
+- To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`.
 
-NW.js is a devDependency for manual desktop checks (`pnpm usage:nw`). Its
-postinstall downloads the SDK, so approve it once locally:
+- NW.js is a devDependency for manual desktop checks (`pnpm usage:nw`)
 
 ```bash
-pnpm approve-builds   # one-off, then:
+pnpm approve-builds
 pnpm usage:nw
 ```
 
-CI installs with `--ignore-scripts`, so that download never runs on GitHub.
+- CI installs with `--ignore-scripts`, so that download never runs on GitHub.
 
-## Testing
+## Similiar projects
 
-This project is tested with BrowserStack.
+Similiar project that using **hash** as base router
 
-Cross-browser testing is provided through the
-[BrowserStack open-source program](https://www.browserstack.com/open-source).
+- [eRouter](https://github.com/frentsel/eRouter)
+- [hyperapp-routes](https://github.com/jrop/hyperapp-routes)
+- [spa-hashrouter](https://github.com/liberstack/spa-hashrouter)
 
-## Credits
+## Acknowledgments
 
-Built with [DeepSeek](https://www.deepseek.com) and
-[DeepSeek Harness (DSH)](https://www.deepseek.com/harness/).
+The resources you find helpful and would like to give credit to
 
+- [BrowserStack](https://www.browserstack.com/open-source)
+- [DeepSeek](https://www.deepseek.com/harness/)
+
+## License
+
+Distributed under the [MIT](LICENSE) License.
