@@ -178,16 +178,27 @@ transpiled — load your polyfills first for `Map`, `Symbol.iterator`,
 
 ## Development
 
-Node **20** is the target (see `.nvmrc`): it is the last line that still ships
-32-bit `linux-armv7l` builds.
+Node **20 is the minimum** (`engines.node: ">=20"`). Development runs on Node 26
+(`.nvmrc`), and CI checks both: 20 for the floor, 26 for the current runtime.
+
+Node 20 matters for *distribution*, not for the library code:
+
+- it is the last line that still ships 32-bit `linux-armv7l` builds;
+- it is the last line with `--experimental-network-imports`, so it is also the
+  version to use if you want to import a CDN build directly from Node;
+- single executable applications (SEA) work on both, with different flags:
+  `--experimental-sea-config` (plus postject) on 20, and the native `--build-sea`
+  as well on 26.
 
 ```bash
-nvm use            # reads .nvmrc
+nvm use            # reads .nvmrc (Node 26)
 pnpm install
 pnpm test          # builds dist/, then runs the uvu suite
 pnpm typecheck
 pnpm build         # dist/router.js + dist/router.legacy.js
 ```
+
+To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`.
 
 NW.js is a devDependency for manual desktop checks (`pnpm usage:nw`). Its
 postinstall downloads the SDK, so approve it once locally:

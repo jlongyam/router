@@ -11,7 +11,7 @@ router.route(':page', function (result) {
   if (params.page === 'home') {
     pre.innerHTML = '<h1>Welcome Home</h1>'
     if (login) {
-      pre.innerHTML += '<p><b>Unload</b> <a href="#style/unload?file=style.css">Style</a></p>'
+      pre.innerHTML += '<p><b>Unload</b> <a href="#style/unload?file=../nw/style.css">Style</a></p>'
     }
   }
 
