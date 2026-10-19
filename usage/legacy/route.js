@@ -2,7 +2,7 @@
 
 // Deliberately ES5: this file is the script that exercises dist/router.legacy.js,
 // so it must be parseable by the same engines the legacy bundle targets.
-var pre = document.querySelector('#pre')
+//var pre = document.querySelector('#pre')
 var login = false
 
 router.route(':page', function (result) {
