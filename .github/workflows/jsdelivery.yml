@@ -1,0 +1,32 @@
+# jsDelivr caches unversioned paths (…/@jlbyte/router/dist/router.js) as a
+# redirect to whichever version was latest when the URL was first requested.
+# After a release that cache has to be purged, otherwise the CDN keeps serving
+# the previous build.
+#
+# Triggering on `release: published` races the publish workflow: the purge would
+# run *before* the new version exists on npm and re-cache the old redirect. So
+# this runs only after "Node.js Package" has finished successfully.
+name: Purge jsDelivr Cache
+
+on:
+  workflow_run:
+    workflows: ["Node.js Package"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  purge:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge unversioned CDN paths
+        uses: egad13/purge-jsdelivr-cache@v1
+        with:
+          url: |
+            https://cdn.jsdelivr.net/npm/@jlbyte/router/dist/router.js
+            https://cdn.jsdelivr.net/npm/@jlbyte/router/dist/router.legacy.js
+            https://cdn.jsdelivr.net/npm/@jlbyte/router@latest/dist/router.js
+            https://cdn.jsdelivr.net/npm/@jlbyte/router@latest/dist/router.legacy.js
