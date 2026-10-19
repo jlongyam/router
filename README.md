@@ -6,6 +6,7 @@ A hash based Router
 [![CI](https://github.com/jlongyam/router/actions/workflows/ci.yml/badge.svg)](https://github.com/jlongyam/router/actions/workflows/ci.yml)
 [![npmx](https://img.shields.io/badge/npmx-view-blue)](https://npmx.dev/package/@jlbyte/router)
 [![DeepSeek Harness](https://img.shields.io/badge/built%20with-DeepSeek%20Harness-4D6BFE)](https://www.deepseek.com/harness/)
+[![BrowserStack](https://img.shields.io/badge/tested%20with-BrowserStack-orange?logo=browserstack&logoColor=white)](https://www.browserstack.com/open-source)
 [![Socket Badge](https://badge.socket.dev/npm/package/@jlbyte/router/2.0.0)](https://badge.socket.dev/npm/package/@jlbyte/router/2.0.0)
 
 ## But why?
@@ -216,6 +217,13 @@ pnpm usage:nw
 ```
 
 CI installs with `--ignore-scripts`, so that download never runs on GitHub.
+
+## Testing
+
+This project is tested with BrowserStack.
+
+Cross-browser testing is provided through the
+[BrowserStack open-source program](https://www.browserstack.com/open-source).
 
 ## Credits
 
