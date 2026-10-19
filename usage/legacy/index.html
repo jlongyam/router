@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usage: Legacy (ES5)</title>
+  <link rel="stylesheet" href="../global.css">
+  <!--
+    For genuinely old engines (e.g. QtWebKit), load your polyfills *before* the
+    bundle: Map, Symbol.iterator, Object.entries and String.prototype.startsWith
+    are runtime APIs that a transpiler cannot add.
+  -->
+  <!-- <script src="../../path/to/polyfills.js"></script> -->
+  <script src="../../dist/router.legacy.js"></script>
+</head>
+<body>
+  <h2>Legacy (ES5)</h2>
+  <ul>
+    <li><a href="../../index.html">Main</a></li>
+    <li><a href="#home">#Home</a></li>
+    <li><a href="#admin">#Admin</a></li>
+    <li><a href="./index.html">!Reset</a></li>
+    <li><a href="../index.html">ESM</a></li>
+    <li><a href="../iife/index.html">IIFE</a></li>
+  </ul>
+  <pre id="pre"></pre>
+  <script src="./route.js"></script>
+</body>
+</html>

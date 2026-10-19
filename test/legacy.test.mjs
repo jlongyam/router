@@ -5,6 +5,7 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 
 const file = new URL('../dist/router.legacy.js', import.meta.url);
+const demo = new URL('../usage/legacy/route.js', import.meta.url);
 
 // Anything that a pre-ES2015 engine cannot parse.
 const ES2015_NODES = new Set([
@@ -56,15 +57,10 @@ function walk(node, visit) {
   }
 }
 
-const legacy = suite('dist legacy build');
-
-legacy('is produced by pnpm build', () => {
-  assert.ok(existsSync(file));
-});
-
-legacy('contains no syntax newer than ES5', () => {
-  const ast = parseSync(readFileSync(file, 'utf8'), {
-    filename: 'router.legacy.js',
+/** Returns every ES2015+ construct found in `code`, sorted for stable output. */
+function es5Violations(code, filename) {
+  const ast = parseSync(code, {
+    filename,
     sourceType: 'script',
     configFile: false,
     babelrc: false,
@@ -79,7 +75,17 @@ legacy('contains no syntax newer than ES5', () => {
     if (node.type === 'Property' && node.shorthand) violations.add('shorthand property');
   });
 
-  assert.equal([...violations].sort(), []);
+  return [...violations].sort();
+}
+
+const legacy = suite('dist legacy build');
+
+legacy('is produced by pnpm build', () => {
+  assert.ok(existsSync(file));
+});
+
+legacy('contains no syntax newer than ES5', () => {
+  assert.equal(es5Violations(readFileSync(file, 'utf8'), 'router.legacy.js'), []);
 });
 
 legacy('still exposes window.router when the polyfills are present', () => {
@@ -105,3 +111,12 @@ legacy('still exposes window.router when the polyfills are present', () => {
 });
 
 legacy.run();
+
+const demoSuite = suite('legacy demo page');
+
+demoSuite('usage/legacy/route.js is ES5 too', () => {
+  if (!existsSync(demo)) return;
+  assert.equal(es5Violations(readFileSync(demo, 'utf8'), 'usage/legacy/route.js'), []);
+});
+
+demoSuite.run();
