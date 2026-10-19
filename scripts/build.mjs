@@ -1,12 +1,13 @@
 // Builds the generated artefacts this package ships:
 //
 //   dist/router.js         -> modern IIFE, <script src="...">  =>  window.router
-//   dist/router.legacy.js  -> same code transpiled to ES5 for old engines
+//   dist/router.legacy.js  -> same code transpiled to ES5, plus guarded ES5
+//                             shims so it works without any polyfill file
 //
 // Both files keep a single global (`router`) and never expose the Router class.
 // The ESM source in src/ is shipped as-is; dist/ is git-ignored and produced on
 // demand (test, publish).
-import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { babel } from '@rollup/plugin-babel';
 import { rollup } from 'rollup';
 
@@ -15,8 +16,6 @@ async function bundle({ outFile, legacy = false }) {
     ? [
         babel({
           babelHelpers: 'bundled',
-          // Syntax only: runtime APIs (Map, Symbol.iterator, Object.entries,
-          // String.prototype.startsWith) are the consumer's polyfill job.
           presets: [
             [
               '@babel/preset-env',
@@ -35,6 +34,8 @@ async function bundle({ outFile, legacy = false }) {
     format: 'iife',
     name: 'router',
     exports: 'default',
+    // The shims run before the bundle and only patch APIs that are missing.
+    intro: legacy ? await readFile('scripts/legacy-shims.js', 'utf8') : undefined,
   });
   await build.close();
 

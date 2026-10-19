@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Usage: Legacy (ES5)</title>
   <link rel="stylesheet" href="../nw/global.css">
-  <!--
-    For genuinely old engines (e.g. QtWebKit), load your polyfills *before* the
-    bundle: Map, Symbol.iterator, Object.entries and String.prototype.startsWith
-    are runtime APIs that a transpiler cannot add.
-  -->
-  <!-- <script src="../../path/to/polyfills.js"></script> -->
+  <!-- Standalone: the bundle carries guarded ES5 shims for Map, Symbol.iterator,
+       Object.entries, Array.from and String.prototype.startsWith. -->
   <!-- CDN copy of the published bundle; swap to ../../dist/router.legacy.js to test a local build. -->
   <script src="https://cdn.jsdelivr.net/npm/@jlbyte/router/dist/router.legacy.js"></script>
 </head>

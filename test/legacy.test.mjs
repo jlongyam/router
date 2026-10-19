@@ -110,6 +110,35 @@ legacy('still exposes window.router when the polyfills are present', () => {
   });
 });
 
+legacy('works without the modern runtime APIs', () => {
+  const sandbox = {
+    console,
+    window: { addEventListener: () => {}, location: { hash: '' } },
+  };
+  vm.createContext(sandbox);
+  vm.runInContext(
+    'Map = undefined; Symbol = undefined; Array.from = undefined;' +
+      'Object.entries = undefined; String.prototype.startsWith = undefined;',
+    sandbox
+  );
+  vm.runInContext(readFileSync(file, 'utf8'), sandbox);
+
+  assert.equal(typeof sandbox.router, 'object');
+  assert.equal(JSON.parse(JSON.stringify(sandbox.router.match('#page/test?asset=a.js', 'page/:any'))), {
+    path: 'page/test',
+    params: { $0: 'test' },
+    query: { asset: 'a.js' },
+  });
+
+  let routed = null;
+  sandbox.router.route(':page', (result) => {
+    routed = result.params.page;
+  });
+  sandbox.window.location.hash = '#home';
+  sandbox.router.handle();
+  assert.is(routed, 'home');
+});
+
 legacy.run();
 
 const demoSuite = suite('legacy demo page');
