@@ -69,6 +69,10 @@ jobs:
     needs: [build, webkit]
     runs-on: ubuntu-latest
     environment: npm_token
+    permissions:
+      contents: read
+      # Needed so npm can attach a signed build provenance attestation.
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -81,6 +85,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
-      - run: npm publish --access public
+      - run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
