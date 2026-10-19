@@ -7,7 +7,7 @@ A hash based Router
 [![npmx](https://img.shields.io/badge/npmx-view-blue)](https://npmx.dev/package/@jlbyte/router)
 [![DeepSeek Harness](https://img.shields.io/badge/built%20with-DeepSeek%20Harness-4D6BFE)](https://www.deepseek.com/harness/)
 [![BrowserStack](https://img.shields.io/badge/tested%20with-BrowserStack-orange?logo=browserstack&logoColor=white)](https://www.browserstack.com/open-source)
-[![Socket Badge](https://badge.socket.dev/npm/package/@jlbyte/router/2.0.0)](https://socket.dev/npm/package/@jlbyte/router)
+[![Socket Badge](https://badge.socket.dev/npm/package/@jlbyte/router/2.1.0)](https://socket.dev/npm/package/@jlbyte/router)
 
 ## But why?
 
