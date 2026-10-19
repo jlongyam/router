@@ -13,6 +13,9 @@
   },
   "license": "MIT",
   "author": "jlongyam",
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "main": "src/router.mjs",
   "module": "src/router.mjs",
@@ -39,8 +42,8 @@
     "start": "serve ."
   },
   "devDependencies": {
-    "@babel/core": "^8.0.7",
-    "@babel/preset-env": "^8.0.7",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
     "@rollup/plugin-babel": "^7.1.0",
     "happy-dom": "^21.0.1",
     "rollup": "^4.64.9",
