@@ -20,7 +20,7 @@ router.route(':page', function (result) {
       router.navigate('#login')
     } else {
       pre.innerHTML = '<h1>Welcome Admin</h1>'
-      pre.innerHTML += '<p><b>Load</b> <a href="#style/load?file=../style.css">Style</a></p>'
+      pre.innerHTML += '<p><b>Load</b> <a href="#style/load?file=../nw/style.css">Style</a></p>'
       pre.innerHTML += '<p><a href="#logout">Logout</a></p>'
     }
   }
