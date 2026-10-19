@@ -30,7 +30,7 @@ That slash after querty parsed properly.
 
 ## Usage
 
-<details name="usage">
+<details name="detail">
 
 <summary>Design site map</summary>
 
@@ -67,7 +67,7 @@ console.dir( router.match('#page/test?asset=path/to/file.js', 'page/:any') );
 See usage detail in **usage/design.mjs**
 
 </details>
-<details name="usage">
+<details name="detail">
 
 <summary>Test design</summary>
 
@@ -89,7 +89,7 @@ console.assert( router.match( hash, pattern ), result )
 ```
 
 </details>
-<details name="usage">
+<details name="detail">
 
 <summary>Create route</summary>
 
@@ -120,7 +120,7 @@ router.route('style/:action', ({ params, query })=> {
 ```
 
 </details>
-<details name="usage">
+<details name="detail">
 <summary>Manage Navigation</summary>
 
 Example:
@@ -135,7 +135,7 @@ See usage detail in **usage/route.mjs**
 
 ## Format
 
-<details name="module"><summary>TypeScript</summary>
+<details name="detail"><summary>TypeScript</summary>
 
 Type definitions are bundled, so editors and `tsc` pick them up without
 installing anything extra:
@@ -148,7 +148,7 @@ const parsed: MatchResult | null = router.match('#page/test', 'page/:any')
 ```
 
 </details>
-<details name="module"><summary>Javascript</summary>
+<details name="detail"><summary>Javascript</summary>
 
 Two entry points:
 
@@ -168,7 +168,7 @@ Two entry points:
 No wiring is needed with the script tag: `router` is already global.
 
 </details>
-<details name="module"><summary>Legacy</summary>
+<details name="detail"><summary>Legacy</summary>
 
 `dist/router.legacy.js` is the same router transpiled to ES5, for engines that
 predate ES2015.
