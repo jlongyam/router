@@ -1,72 +1,39 @@
-import { describe, it, assert } from "poku";
-import { match } from "../src/match.mjs";
+import { suite } from 'uvu';
+import * as assert from 'uvu/assert';
+import { match } from '../src/match.mjs';
 
-let args = {};
-let returns = {
-  path: '',
-  params: {},
-  query: {}
-};
+const cases = suite('match( hash, route ) -> { path, params, query }');
 
-describe('match( hash, route ) -> { path, params, query }', async ()=> {  
-  args = {
-    hash: '#lib/test/src?path=/root/file.css',
-    route: 'lib/:n/src'
-  };
-  it( `${args.hash} > ${args.route}`, ()=> {
-    returns = {
-      path: 'lib/test/src',
-      params: { n: 'test' },
-      query: { path: '/root/file.css' }
-    };
-    assert.deepEqual( match( args.hash, args.route ), returns );
+cases('#lib/test/src?path=/root/file.css > lib/:n/src', () => {
+  assert.equal(match('#lib/test/src?path=/root/file.css', 'lib/:n/src'), {
+    path: 'lib/test/src',
+    params: { n: 'test' },
+    query: { path: '/root/file.css' },
   });
-  args = {
-    hash: '#docs/api/guides?format=json',
-    route: 'docs/:any/:any'
-  };
-  it( `${args.hash} > ${args.route}`, ()=> {
-    returns = {
-      path: "docs/api/guides",
-      params: { $0: "api", $1: "guides" },
-      query: { format: "json" }
-    };
-    assert.deepEqual( match( args.hash, args.route ), returns );
-  });
+});
 
-  args = {
-    hash: '#/',
-    route: '/'
-  };
-  it( `${args.hash} > ${args.route} (root)`, ()=> {
-    returns = { path: '/', params: {}, query: {} };
-    assert.deepEqual( match( args.hash, args.route ), returns );
+cases('#docs/api/guides?format=json > docs/:any/:any', () => {
+  assert.equal(match('#docs/api/guides?format=json', 'docs/:any/:any'), {
+    path: 'docs/api/guides',
+    params: { $0: 'api', $1: 'guides' },
+    query: { format: 'json' },
   });
+});
 
-  args = {
-    hash: '',
-    route: '/'
-  };
-  it( `${JSON.stringify(args.hash)} > ${args.route} (empty hash)`, ()=> {
-    returns = { path: '/', params: {}, query: {} };
-    assert.deepEqual( match( args.hash, args.route ), returns );
-  });
+cases('#/ > / (root)', () => {
+  assert.equal(match('#/', '/'), { path: '/', params: {}, query: {} });
+});
 
-  args = {
-    hash: '#/',
-    route: ':page'
-  };
-  it( `${args.hash} > ${args.route} (wildcard no longer swallows root)`, ()=> {
-    assert.deepEqual( match( args.hash, args.route ), null );
-  });
+cases('"" > / (empty hash)', () => {
+  assert.equal(match('', '/'), { path: '/', params: {}, query: {} });
+});
 
-  args = {
-    hash: '#/home/',
-    route: '/home'
-  };
-  it( `${args.hash} > ${args.route} (trailing slash still trimmed)`, ()=> {
-    returns = { path: '/home', params: {}, query: {} };
-    assert.deepEqual( match( args.hash, args.route ), returns );
-  });
+cases('#/ > :page (wildcard no longer swallows root)', () => {
+  assert.equal(match('#/', ':page'), null);
+});
 
-})
+cases('#/home/ > /home (trailing slash still trimmed)', () => {
+  assert.equal(match('#/home/', '/home'), { path: '/home', params: {}, query: {} });
+});
+
+cases.run();

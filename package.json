@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/router",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "A hash based router",
   "keywords": [
     "router",
@@ -13,14 +13,39 @@
   },
   "license": "MIT",
   "author": "jlongyam",
+  "type": "module",
   "main": "src/router.mjs",
+  "module": "src/router.mjs",
+  "types": "src/router.d.mts",
+  "unpkg": "dist/router.js",
+  "jsdelivr": "dist/router.js",
+  "exports": {
+    ".": {
+      "types": "./src/router.d.mts",
+      "import": "./src/router.mjs",
+      "default": "./src/router.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
-    "test": "poku test/",
+    "build": "node scripts/build.mjs",
+    "prepublishOnly": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && uvu test",
+    "typecheck": "tsc",
     "start": "serve ."
   },
   "devDependencies": {
+    "@babel/core": "^8.0.7",
+    "@babel/preset-env": "^8.0.7",
+    "@rollup/plugin-babel": "^7.1.0",
     "happy-dom": "^21.0.1",
-    "poku": "^4.5.0",
-    "serve": "^14.2.6"
+    "rollup": "^4.64.9",
+    "serve": "^14.2.6",
+    "typescript": "^7.0.2",
+    "uvu": "^0.5.6"
   }
 }

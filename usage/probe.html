@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Router probe</title>
+  <style>
+    body { font: 14px/1.5 monospace; padding: 16px; }
+    h1 { font-size: 16px; }
+    pre { border: 1px solid #999; padding: 8px; white-space: pre-wrap; }
+    .ok { color: #0a0; }
+    .no { color: #c00; }
+  </style>
+</head>
+<body>
+<h1>Router probe</h1>
+<pre id="out">running…</pre>
+
+<!-- The real bundle: if this engine cannot parse it, `router` stays undefined. -->
+<script src="../../dist/router.js"></script>
+
+<script>
+// Plain ES5 on purpose: this page must run on the oldest engine you have.
+(function () {
+  var out = document.getElementById('out');
+  var lines = [];
+  var errors = [];
+
+  window.onerror = function (message, source, line) {
+    errors.push(message + ' (' + String(source).split('/').pop() + ':' + line + ')');
+    return true;
+  };
+
+  function check(name, fn) {
+    var result;
+    try {
+      result = fn();
+    } catch (e) {
+      result = 'throws: ' + e.message;
+    }
+    lines.push((result === true ? 'ok   ' : 'FAIL') + '  ' + name + '  ->  ' + String(result));
+  }
+
+  check('class syntax', function () { eval('class A {}'); return true; });
+  check('arrow function', function () { eval('var f = function () {}; var g = () => 1;'); return true; });
+  check('const / let', function () { eval('const a = 1; let b = 2;'); return true; });
+  check('template literal', function () { eval('var t = `x${1}`;'); return true; });
+  check('object spread', function () { eval('var o = Object.assign({}, { a: 1 }); var p = { ...o };'); return true; });
+  check('Object.entries', function () { return typeof Object.entries === 'function'; });
+  check('Map', function () { return typeof Map === 'function'; });
+  check('Map iteration (for..of)', function () {
+    eval('var m = new Map(); m.set("a", 1); for (var e of m) { void e; }');
+    return true;
+  });
+  check('String.prototype.startsWith', function () {
+    return typeof String.prototype.startsWith === 'function' && 'abc'.startsWith('a');
+  });
+  check('Promise', function () { return typeof Promise === 'function'; });
+  check('window.router (from dist/router.js)', function () {
+    if (typeof window.router === 'undefined') return 'undefined';
+    return typeof window.router.match === 'function' ? true : 'router without match()';
+  });
+
+  var text = 'userAgent:\n  ' + navigator.userAgent + '\n\n';
+  text += 'features:\n  ' + lines.join('\n  ') + '\n';
+  text += '\nscript errors:\n  ' + (errors.length ? errors.join('\n  ') : '(none)');
+  out.textContent = text;
+})();
+</script>
+</body>
+</html>
