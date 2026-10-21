@@ -272,9 +272,9 @@ The resources you find helpful and would like to give credit to
 
 ## Roadmap
 
-- [OK] create legacy compability script
-- [OK] usage for pretty URL
-- [NO] create custom HTML element `<ux-router>`
+- [X] create legacy compability script
+- [X] usage for pretty URL
+- [ ] create custom HTML element `<ux-router>`
 
 ## License
 
