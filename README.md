@@ -132,6 +132,33 @@ router.navigate('#style/load?file=style.css')
 See usage detail in **usage/route.mjs**
 
 </details>
+<details name="detail"><summary>Pretty URL</summary>
+
+How to create pretty URL like `https://example.com/#/other/page`
+
+1. Design first
+
+```js
+console.log( 'Design', router.match('#/other', '/:page') );
+```
+
+2. Catch route
+
+```js
+router.route('/:page', ({params})=> {
+  console.log('Routes: ', params);
+}
+```
+
+3. Test
+
+```js
+router.navigate('#/other');
+```
+
+See `usage/pretty.html` for example
+
+</details>
 
 ## Format
 
@@ -174,6 +201,7 @@ No wiring is needed with the script tag: `router` is already global.
 predate ES2015.
 
 It is **standalone**, the few runtime APIs it needs
+
 - `Map`,
 - `Symbol.iterator`,
 - `Object.entries`,
@@ -202,9 +230,9 @@ targeting those browsers.
 
 ## Development
 
-- Node **20 is the minimum** (`engines.node: ">=20"`).
-- Development runs on Node 26 (`.nvmrc`),
-- CI checks both: 20 for the floor, 26 for the current runtime.
+- Node **20 is the minimum** (`engines.node: ">=20"`)
+- Development runs on Node 26 (`.nvmrc`)
+- CI checks both: 20 for the floor, 26 for the current runtime
 
 ```bash
 nvm use 
@@ -215,7 +243,7 @@ pnpm build
 pnpm test:webkit
 ```
 
-- To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`.
+- To exercise the 32-bit / legacy path locally, switch down: `nvm use 20.20.0`
 
 - NW.js is a devDependency for manual desktop checks (`pnpm usage:nw`)
 
@@ -241,6 +269,12 @@ The resources you find helpful and would like to give credit to
 
 - [BrowserStack](https://www.browserstack.com/open-source)
 - [DeepSeek](https://www.deepseek.com/harness/)
+
+## Roadmap
+
+- [OK] create legacy compability script
+- [OK] usage for pretty URL
+- [NO] create custom HTML element `<ux-router>`
 
 ## License
 

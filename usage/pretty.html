@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pretty URL</title>
+  <link href="./nw/global.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Prertty URL</h1>
+  <ul>
+    <li><a href="../index.html">Main</a></li>
+    <li><a href="#/other">#/Other</a></li>
+    <li><a href="pretty.html">!Reset</a></li>
+  </ul>
+  <pre id="pre"><h1>Welcome</h1></pre>
+  <script type="module">
+    import router from '../src/router.mjs';
+
+    console.log( 'Design', router.match('#/other', '/:page') );
+    
+    router.route('/:page', ({params})=> {
+      console.log('Routes: ', params);
+      if(params.page === 'other') {
+        pre.innerHTML = '<h1>This is OTHER page</h1>'
+      }
+    });
+
+    //router.navigate('#/other');
+  </script>
+</body>
+</html>
