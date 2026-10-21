@@ -233,6 +233,7 @@ Similiar project that using **hash** as base router
 - [eRouter](https://github.com/frentsel/eRouter)
 - [hyperapp-routes](https://github.com/jrop/hyperapp-routes)
 - [spa-hashrouter](https://github.com/liberstack/spa-hashrouter)
+- [director](https://github.com/flatiron/director)
 
 ## Acknowledgments
 
