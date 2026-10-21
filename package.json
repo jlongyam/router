@@ -4,13 +4,10 @@
   "description": "A hash based router",
   "keywords": [
     "router",
-    "hash"
+    "hash-router"
   ],
-  "homepage": "https://github.com/jlongyam/router",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlongyam/router.git"
-  },
+  "homepage": "https://jlongyam.github.io/router/",
+  "repository": "https://github.com/jlongyam/router.git",
   "license": "MIT",
   "author": "jlongyam",
   "engines": {
