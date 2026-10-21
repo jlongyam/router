@@ -256,7 +256,7 @@ pnpm usage:nw
 
 ## Similiar projects
 
-Similiar project that using **hash** as base router
+Similiar project that using **hash** router
 
 - [eRouter](https://github.com/frentsel/eRouter)
 - [hyperapp-routes](https://github.com/jrop/hyperapp-routes)
